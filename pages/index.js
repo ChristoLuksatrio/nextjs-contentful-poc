@@ -33,7 +33,7 @@ export default function Home({ posts }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   const res = await fetchEntries();
   const posts = await res.map((p) => {
     return p.fields;
@@ -41,7 +41,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts
+      posts: context.preview ? "bla" : posts
     }
   };
 }
